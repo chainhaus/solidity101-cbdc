@@ -41,40 +41,40 @@ var run = async() => {
     console.log('Simple CBDC description',cbdcContract)
 
     console.log('Contract hash address',cbdcContract.options.address);
-    balance = await cbdcContract.methods.totalSupply().call();
+    balance = await cbdcContract.methods.moneySupply().call();
     console.log('Balance: ', balance );
 
     mintTransaction = await cbdcContract.methods.mint(20).send({from:accounts[0]});
-    balance = await cbdcContract.methods.totalSupply().call()
+    balance = await cbdcContract.methods.moneySupply().call()
     console.log('Balance: ', balance );
 
 
-    transactionHash = mintTransaction.transactionHash;
-    console.log('Transaction hash: ', transactionHash);
+    // transactionHash = mintTransaction.transactionHash;
+    // console.log('Transaction hash: ', transactionHash);
 
-    mnemonic = config.get('mnemonic');
-    //console.log("My menomic: ", mnemonic);
+    // mnemonic = config.get('mnemonic');
+    // //console.log("My menomic: ", mnemonic);
 
 
-    infuraAccessKey = config.get('infuraAccessKey');
-    console.log("My key: ", infuraAccessKey);
+    // infuraAccessKey = config.get('infuraAccessKey');
+    // console.log("My key: ", infuraAccessKey);
 
-    const HDWalletProvider = require('truffle-hdwallet-provider');
-    infuraURL = "https://rinkeby.infura.io/v3/" + infuraAccessKey
+    // const HDWalletProvider = require('truffle-hdwallet-provider');
+    // infuraURL = "https://rinkeby.infura.io/v3/" + infuraAccessKey
 
-    provider = new HDWalletProvider(mnemonic,infuraURL);
-    web3 = new Web3(provider);
-    accounts = await web3.eth.getAccounts();
-    console.log('Accounts',accounts)    
+    // provider = new HDWalletProvider(mnemonic,infuraURL);
+    // web3 = new Web3(provider);
+    // accounts = await web3.eth.getAccounts();
+    // console.log('Accounts',accounts)    
 
-    //Step 22 - Can demo small gas and contract creation failure
-    cbdcContract = await new web3.eth.Contract(JSON.parse(compiled.interface))
-    .deploy({data: '0x' + compiled.bytecode})
-    .send({gas:'1000000',from:'0x0b60b4eD15dB494c84D815742a2E8497172f0bB7'}); 
-    console.log('Rinkeby contract hash address',cbdcContract.options.address);
+    // //Step 22 - Can demo small gas and contract creation failure
+    // cbdcContract = await new web3.eth.Contract(JSON.parse(compiled.interface))
+    // .deploy({data: '0x' + compiled.bytecode})
+    // .send({gas:'1000000',from:'0x0b60b4eD15dB494c84D815742a2E8497172f0bB7'}); 
+    // console.log('Rinkeby contract hash address',cbdcContract.options.address);
 
-    cbdcContractHash  = cbdcContract.options.address
-    cbdcContract = await new web3.eth.Contract(JSON.parse(compiled.interface),cbdcContractHash);
+    // cbdcContractHash  = cbdcContract.options.address
+    // cbdcContract = await new web3.eth.Contract(JSON.parse(compiled.interface),cbdcContractHash);
     //marriageCertificate = await cbdcContract.methods.obtainMarriageLicense('jack','jill').send({from:accounts[0]});
 
 
