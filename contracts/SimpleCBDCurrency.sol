@@ -21,4 +21,12 @@ contract SimpleCBDCurrency {
         _banks[centralbank] = _banks[centralbank] + amount;
     }
 
+    function lend(address receiver, uint256 amount) public {
+        _banks[receiver] = _banks[receiver] + amount;
+        _banks[centralbank] = _banks[centralbank] - amount;
+    }
+
+    function balance(address bank) public returns (uint256) {
+        return _banks[bank];
+    }
 }
