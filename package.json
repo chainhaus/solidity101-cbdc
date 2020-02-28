@@ -1,7 +1,7 @@
 {
-  "name": "solidity101",
+  "name": "CBDC Token",
   "version": "1.0.0",
-  "description": "My First Solidity App",
+  "description": "Simple CBDC Token",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
